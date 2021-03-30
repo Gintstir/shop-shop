@@ -3,6 +3,8 @@ import React from 'react';
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 
+import Cart from '../components/Cart';
+
 // const Home = () => {
 //   //this page manages the state currentCategory which is passed to ProductList component as a prop and
 //   //instructs which category's products should be retrieved by Apollo.  To set that currentCaregory value,
@@ -23,6 +25,7 @@ const Home = () => {
     <div className="container">
       <CategoryMenu />
       <ProductList />
+      <Cart />
     </div>
   );
 };
