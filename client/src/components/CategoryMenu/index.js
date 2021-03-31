@@ -1,24 +1,20 @@
-import React, { useEffect } from "react";
-
-import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
-
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_CATEGORIES } from "../../utils/queries";
-
 import { useStoreContext } from '../../utils/GlobalState';
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
+import { QUERY_CATEGORIES } from '../../utils/queries';
 
-// function CategoryMenu({ setCategory }) {
 function CategoryMenu() {
-  
   const [state, dispatch] = useStoreContext();
 
-  const {categories} = state
-  
+  const { categories } = state;
+
   const { data: categoryData } = useQuery(QUERY_CATEGORIES);
 
   useEffect(() => {
-    //if categoryData exists or has changed from the response of useQuery, then run dispatch()
-    if(categoryData) {
+        //if categoryData exists or has changed from the response of useQuery, then run dispatch()
+
+    if (categoryData) {
       //execute our dispatch function with our action object indicating the type of
       //action and the the data set our categories state to
       dispatch({
@@ -35,8 +31,6 @@ function CategoryMenu() {
     });
   };
 
-  //const categories = categoryData?.categories || [];
-
   return (
     <div>
       <h2>Choose a Category:</h2>
@@ -44,7 +38,6 @@ function CategoryMenu() {
         <button
           key={item._id}
           onClick={() => {
-            // setCategory(item._id);
             handleClick(item._id);
           }}
         >

@@ -14,7 +14,7 @@ in that we want to be able to select a category from the state created by the UP
 and display products for that category from the list we create from the UPDATE_PRODUCTS action.*/
 export const ADD_TO_CART = "ADD_TO_CART";
 
-export const ADD_MULTIPLE_TO_CART = "ADD_MULTIPLE_TO CART";
+export const ADD_MULTIPLE_TO_CART = "ADD_MULTIPLE_TO_CART";
 
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
