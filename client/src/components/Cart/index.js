@@ -1,3 +1,5 @@
+import { useLazyQuery } from '@apollo/react-hooks';
+
 import React, { useEffect } from "react";
 import CartItem from "../CartItem";
 import Auth from "../../utils/auth";
@@ -7,12 +9,21 @@ import "./style.css";
 
 import { idbPromise } from '../../utils/helpers';
 
+import { QUERY_CHECKOUT } from '../../utils/queries';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+
 
 
 const Cart = () => {
+
+
   const [state, dispatch] = useStoreContext();
 
+  const [getCheckout, {data}] = useLazyQuery(QUERY_CHECKOUT);
 
+  //----------------------------------
   /*With this function in place, we're checking to see if state.cart.length is 0,
    then executing getCart() to retrieve the items from the cart object store and save
   it to the global state object. We dispatch the ADD_MULTIPLE_TO_CART action here
@@ -29,12 +40,21 @@ const Cart = () => {
       getCart();
     }
   }, [state.cart.length, dispatch]);
-    
 
+  //----------------------------
+  useEffect(() => {
+    if(data) {
+      stripePromise.then((res) => {
+        res.redirectToCheckout({ sessionId: data.checkout.session });
+      });
+    }
+  }, [data]);
+    
+  //----------------------------
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
   }
-
+  //-----------------------------
   function calculateTotal() {
     let sum = 0;
     state.cart.forEach(item => {
@@ -42,6 +62,21 @@ const Cart = () => {
     });
     return sum.toFixed(2);
   }
+  //----------------------------
+  function submitCheckout () {
+    const productIds = [];
+
+    state.cart.forEach((item) => {
+      for (let i = 0; i < item.purchaseQuantity; i++) {
+        productIds.push(item._id);
+      }
+    });
+
+    getCheckout({
+      variables: { products: productIds }
+    });
+  }
+
   //If cartOpen is false, the component will return a much smaller <div>.
   //Clicking this <div>, however, will set cartOpen to true and return the expanded shopping cart.
   if (!state.cartOpen) {
@@ -69,7 +104,7 @@ const Cart = () => {
 
             {
               Auth.loggedIn() ?
-                <button>
+                <button onClick={submitCheckout}>
                   Checkout
               </button>
                 :
