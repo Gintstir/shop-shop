@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+//import { useReducer } from 'react';
 
 import {
     UPDATE_CATEGORIES,
@@ -13,6 +13,16 @@ import {
 
 } from './actions';
 
+const initialState = {
+    products: [],
+    cart: [],
+    cartOpen: false,
+    categories: [],
+    currentCategory: " ",
+    
+
+}
+
 
 /* Imports possible actions above.  When the function below executes, we pass the value
 of the action.type argument into a switch statement and compare it to our possble actions.
@@ -21,7 +31,7 @@ UPDATE_PRODUCTS action. If its that action type, we return a new object with a c
 argument usding the spread ... operator and the se the products key to a value of a new array 
 with the action.prducrts value spread across it.  If its not that action type, we make no change
 to state and return it as it */
-export const reducer = ( state, action ) => {
+const reducer = ( state = initialState, action ) => {
     switch (action.type) {
         //if action type value is the value of UPDATE_PRODUCTS, return a new state
         // object with an updated products array
@@ -107,6 +117,8 @@ export const reducer = ( state, action ) => {
 the functionality for updating that state by automatically running it through our custom
 reducer() function.  Like a more in depth way of using the useState Hook.  The useReducer Hook
 is meant specifically for managing a greater level of state. */
-export function useProductReducer(initialState) {
-    return useReducer(reducer, initialState);
-}
+// export function useProductReducer(initialState) {
+//     return useReducer(reducer, initialState);
+// }
+
+export default reducer;
