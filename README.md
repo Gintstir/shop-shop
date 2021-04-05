@@ -3,7 +3,33 @@
 
 ## Description
 
+<br>
 
+[Shop-Shop](https://lychee-custard-01769.herokuapp.com/) Click here to open application
+
+<br>
+
+**Shop-Shop** is an ecommerce site refactored to use **Redux** instead of **Context API** to manage *global state*. 
+
+<br>
+
+## Acceptance Criteria
+
+<br>
+
+GIVEN an e-commerce platform that uses Redux to manage global state
+- WHEN I review the app’s store
+    - [x] THEN I find that the app uses a Redux store instead of the Context API
+- WHEN I review the way the React front end accesses the store
+    - [x] THEN I find that the app uses a Redux provider
+- WHEN I review the way the app determines changes to its global state
+    - [x] THEN I find that the app passes reducers to a Redux store instead of using the Context API
+- WHEN I review the way the app extracts state data from the store
+    - [x] THEN I find that the app uses Redux instead of the Context API
+- WHEN I review the way the app dispatches actions
+    - [x] THEN I find that the app uses Redux instead of the Context API
+
+<br>
 
 ## **Table of Contents**
 
@@ -32,7 +58,15 @@ After cloning/forking the applications use the command `npm i` or `npm install` 
 
 <br>
 
+![Main-page](client/src/assets/images/mainpage.png)
 
+<br>
+
+![Single-item](client/src/assets/images/singleitem.png)
+
+<br>
+
+![checkout](client/src/assets/images/checkout.com.png)
 
 <br>
 
@@ -56,11 +90,12 @@ Please refer to the **[Contributor Covenant](https://www.contributor-covenant.or
 
 <br>
 
-**This project was completed using:** 
+**This refactor was completed using:** 
 
 <br> 
 
-
+` - Redux` <br>
+` - React-Redux`
 
 
 <br>

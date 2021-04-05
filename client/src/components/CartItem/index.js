@@ -10,6 +10,7 @@ const CartItem = ({ item }) => {
     //Note that we only destructured the dispatch() function from the useStoreContext Hook,
     // because the CartItem component has no need to read state.
   //const [, dispatch] = useStoreContext();
+  //we dont need to read state here, just using useDispatch
   const dispatch = useDispatch();
 
   const removeFromCart = item => {
