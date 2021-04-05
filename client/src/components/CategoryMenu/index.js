@@ -9,12 +9,10 @@ import { idbPromise } from '../../utils/helpers';
 
 function CategoryMenu() {
   //const [state, dispatch] = useStoreContext();
-  //The selector function may return any value as a result,
-  // not just an object. The return value of the selector will be used as
-  // the return value of the useSelector hook.
-  const state = useSelector(state => state);
-  //In order to dispatch actions from a component, we need access to the store's dispatch function.
-  // We get this by calling the useDispatch hook from React-Redux. 
+  const state = useSelector((state) => {
+    return state;
+  })
+
   const dispatch = useDispatch();
 
   const { categories } = state;
